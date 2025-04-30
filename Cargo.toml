@@ -5,3 +5,5 @@ edition = "2024"
 
 [dependencies]
 shell-words = "1.1"
+crossterm = "0.29.0"
+winapi = { version = "0.3", features = ["consoleapi", "wincon", "handleapi", "processenv", "winbase"] }
