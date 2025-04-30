@@ -106,21 +106,19 @@ pub fn handle_command(args: &str) {
             "help" => {
                 help::help();
             }
-
             _ => {
-                if cmd.starts_with("./") {
-                    match Command::new(cmd).args(args).status() {
-                        Ok(status) => {
-                            if !status.success() {
-                                eprintln!("Process exited with status: {}", status);
-                            }
-                        }
-                        Err(err) => {
-                            eprintln!("Failed to execute {}: {}", cmd, err);
+
+                let result = Command::new(cmd).args(args).status();
+
+                match result {
+                    Ok(status) => {
+                        if !status.success() {
+                            eprintln!("Process exited with status: {}", status);
                         }
                     }
-                } else {
-                    println!("Command not found: {}", cmd);
+                    Err(err) => {
+                        eprintln!("Command not found or failed to execute '{}': {}", cmd, err);
+                    }
                 }
             }
         }
