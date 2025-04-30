@@ -2,6 +2,7 @@ use std::io::{self, Write};
 mod command;
 
 fn setup() {
+    println!("Setting up the environment...");
     #[cfg(windows)]
     {
         use winapi::um::consoleapi::{GetConsoleMode, SetConsoleMode};
@@ -25,7 +26,7 @@ fn setup() {
         }
     }
 
-    println!("Setting up the environment...");
+
     println!("Environment setup complete.");
     println!("Welcome to RuShell!");
 }
